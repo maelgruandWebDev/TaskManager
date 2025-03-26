@@ -53,7 +53,8 @@ body {
 
 /* Formulaire de login */
 #login {
-  width: 300px;
+  width: 90%;
+  max-width: 400px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -100,7 +101,8 @@ body {
 
 /* Section profil utilisateur */
 #profile-sect {
-  width: 300px;
+  width: 90%;
+  max-width: 400px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -112,7 +114,8 @@ body {
 
 /* Affichage des tâches */
 #tasks {
-  width: 60%;
+  width: 90%;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -136,7 +139,8 @@ body {
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: 100%;
+  max-width: 250px;
   text-align: center;
   margin-bottom: 10px;
   transition: transform 0.3s;
@@ -197,7 +201,8 @@ body {
 
 /* Vue options */
 #vue {
-  width: 60%;
+  width: 90%;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
@@ -249,6 +254,57 @@ body {
   background-color: #45a049;
 }
 
-#add-task {
-  width: 100%;
+/* Responsive Design - Mobile First */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #profile-sect input[type="text"],
+  #profile-sect button {
+    width: 100%;
+  }
+
+  #tasks {
+    width: 100%;
+  }
+
+  .task-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #vue {
+    width: 100%;
+  }
+}
+
+/* Responsive Design - Tablettes et au-delà */
+@media (min-width: 769px) {
+  .navbar {
+    flex-direction: row;
+  }
+
+  .task-card {
+    width: 45%;
+    max-width: 250px;
+  }
+
+  #tasks {
+    width: 60%;
+  }
+
+  #profile-sect {
+    width: 50%;
+  }
+
+  #vue {
+    width: 60%;
+  }
 }
