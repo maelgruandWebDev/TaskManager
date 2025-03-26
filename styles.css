@@ -146,6 +146,55 @@ body {
   transform: translateY(-5px);
 }
 
+.task-card button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.task-card button:hover {
+  background-color: #e53935;
+}
+
+/* Vue Table */
+#tasks table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tasks table th,
+#tasks table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#tasks table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+#tasks table td button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#tasks table td button:hover {
+  background-color: #e53935;
+}
+
 /* Vue options */
 #vue {
   width: 60%;
@@ -172,4 +221,34 @@ body {
 
 #vue button:hover {
   background-color: #45a049;
+}
+
+/* Section Ajouter Tâche */
+#profile-sect input[type="text"] {
+  width: 75%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+#profile-sect button {
+  width: 20%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#profile-sect button:hover {
+  background-color: #45a049;
+}
+
+#add-task {
+  width: 100%;
 }

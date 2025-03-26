@@ -9,11 +9,9 @@ const tasksDiv = document.getElementById('tasks');
 const seeKanbanBtn = document.getElementById('seeKanban');
 const seeTableBtn = document.getElementById('seeTable');
 
-// Objet pour stocker les informations utilisateur
-const user = {
-    name: '',
-    email: ''
-};
+// Vérification et chargement des données depuis localStorage
+let user = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Fonction de validation des informations utilisateur
 function validateUser() {
@@ -28,6 +26,9 @@ function validateUser() {
 
     user.name = name;
     user.email = email;
+
+    // Sauvegarder dans localStorage
+    localStorage.setItem('user', JSON.stringify(user));
 
     message.innerText = `Connexion réussie. Bienvenue, ${user.name} !`;
     message.style.color = "green";
@@ -52,10 +53,7 @@ function displayProfile() {
     addTaskBtn.addEventListener('click', addTask);
 }
 
-// Tableau pour stocker les tâches (vide par défaut)
-const tasks = [];
-
-// Fonction pour afficher les tâches en vue Kanban
+// Fonction pour afficher les tâches en vue Kanban ou Table
 function displayTasks(view) {
     tasksDiv.innerHTML = ""; // Réinitialisation des tâches
 
@@ -112,7 +110,7 @@ function displayTasks(view) {
                 deleteTask(index);
             });
         });
-        
+
         // Ajout des événements de modification pour chaque tâche dans le tableau
         const modifyBtns = document.querySelectorAll('.modify');
         modifyBtns.forEach((btn) => {
@@ -132,6 +130,10 @@ function addTask() {
     if (newTask !== '') {
         tasks.push(newTask);
         taskInput.value = '';
+
+        // Sauvegarder dans localStorage
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
         displayTasks("kanban"); // On affiche par défaut en Kanban
     } else {
         alert("Veuillez entrer une tâche valide.");
@@ -141,6 +143,10 @@ function addTask() {
 // Fonction pour supprimer une tâche
 function deleteTask(index) {
     tasks.splice(index, 1);
+
+    // Sauvegarder dans localStorage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
     displayTasks("kanban");
 }
 
@@ -150,6 +156,10 @@ function modifyTask(index) {
 
     if (newTask !== null && newTask.trim() !== "") {
         tasks[index] = newTask.trim();
+
+        // Sauvegarder dans localStorage
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
         displayTasks("kanban");  // Mettre à jour la vue Kanban
         displayTasks("table");   // Mettre à jour la vue Table
     }
@@ -159,3 +169,13 @@ function modifyTask(index) {
 seeKanbanBtn.addEventListener("click", () => displayTasks("kanban"));
 seeTableBtn.addEventListener("click", () => displayTasks("table"));
 validateBtn.addEventListener("click", validateUser);
+
+// Charger les données initiales si disponibles dans localStorage
+if (user.name && user.email) {
+    message.innerText = `Connexion réussie. Bienvenue, ${user.name} !`;
+    message.style.color = "green";
+    displayProfile();
+} else {
+    message.innerText = "Veuillez vous connecter.";
+    message.style.color = "red";
+}
